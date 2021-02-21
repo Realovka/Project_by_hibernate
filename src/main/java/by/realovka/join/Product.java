@@ -1,4 +1,4 @@
-package by.realovka.single;
+package by.realovka.join;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @SuperBuilder
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "product_join")
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "name")
 public class Product {
     @Id

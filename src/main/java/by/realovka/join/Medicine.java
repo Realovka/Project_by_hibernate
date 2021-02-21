@@ -1,4 +1,4 @@
-package by.realovka.single;
+package by.realovka.join;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Entity
 @SuperBuilder
+@Table(name = "medicine_join")
 @DiscriminatorValue("medicine")
 public class Medicine extends Product {
     @Column(name = "dosage_form")
