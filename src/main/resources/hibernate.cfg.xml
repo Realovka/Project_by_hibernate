@@ -29,6 +29,7 @@
 
         <mapping class="by.realovka.join.Medicine"/>
         <mapping class="by.realovka.join.DietarySupplement"/>
+        <mapping class="by.realovka.join.Product"/>
 
 
 
