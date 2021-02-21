@@ -15,6 +15,7 @@ public class Start {
         SessionFactory sessionFactory = cfg.buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction trx = session.beginTransaction();
+
         Medicine cerebrolizat = Medicine.builder()
                 .coldStorage(true)
                 .dosageForm("amp")
@@ -25,10 +26,18 @@ public class Start {
                 .packageDivision(false)
                 .belarusianProduct(false)
                 .build();
+
 //        session.save(cerebrolizat);
 //        session.save(biogaya);
-        Product object = session.find(Product.class, 3L);
-        System.out.println(object);
+
+//        Product object = session.find(Product.class, 3L);
+//        System.out.println(object);
+
+//        biogaya.setPackageDivision(true);
+//        session.saveOrUpdate(biogaya);
+
+        session.delete(cerebrolizat); //TODO
+
         trx.commit();
         session.close();
     }
