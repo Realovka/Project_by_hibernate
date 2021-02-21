@@ -19,18 +19,20 @@ public class Start {
         Transaction trx = session.beginTransaction();
 
         Medicine cerebrolizat = Medicine.builder()
+                .name("cerebrolizat")
                 .coldStorage(true)
                 .dosageForm("amp")
                 .recipe(true)
                 .build();
         DietarySupplement biogaya = DietarySupplement.builder()
+                .name("biogaya")
                 .coldStorage(false)
                 .packageDivision(false)
                 .belarusianProduct(false)
                 .build();
 
-//        session.save(cerebrolizat);
-//        session.save(biogaya);
+        session.save(cerebrolizat);
+        session.save(biogaya);
 
 //        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
 //        System.out.println(products);
