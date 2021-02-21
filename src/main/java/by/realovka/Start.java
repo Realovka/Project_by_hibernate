@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class Start {
     public static void main(String[] args) {
         Configuration cfg = new Configuration().configure();
@@ -30,13 +32,16 @@ public class Start {
 //        session.save(cerebrolizat);
 //        session.save(biogaya);
 
+//        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
+//        System.out.println(products);
+
 //        Product object = session.find(Product.class, 3L);
 //        System.out.println(object);
 
 //        biogaya.setPackageDivision(true);
 //        session.saveOrUpdate(biogaya);
 
-        session.delete(cerebrolizat); //TODO
+//        session.delete(cerebrolizat); //TODO
 
         trx.commit();
         session.close();
