@@ -1,4 +1,4 @@
-package by.realovka.web.dao.dao;
+package by.realovka;
 
 import lombok.SneakyThrows;
 import org.hibernate.SessionFactory;

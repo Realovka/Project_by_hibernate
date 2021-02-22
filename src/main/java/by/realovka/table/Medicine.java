@@ -1,10 +1,9 @@
-package by.realovka.join;
+package by.realovka.table;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 

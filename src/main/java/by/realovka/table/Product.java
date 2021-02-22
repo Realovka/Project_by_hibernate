@@ -1,4 +1,4 @@
-package by.realovka.join;
+package by.realovka.table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
