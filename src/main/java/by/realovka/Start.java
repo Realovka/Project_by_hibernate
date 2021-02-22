@@ -1,14 +1,18 @@
 package by.realovka;
 
 
-import by.realovka.table.DietarySupplement;
-import by.realovka.table.Medicine;
 import by.realovka.table.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class Start {
@@ -16,53 +20,42 @@ public class Start {
         Configuration cfg = new Configuration().configure();
         SessionFactory sessionFactory = cfg.buildSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction trx = session.beginTransaction();
-//        Medicine cerebrolizat = Medicine.builder()
-//                .name("cerebrolizat")
-//                .coldStorage(true)
-//                .dosageForm("amp")
-//                .recipe(true)
-//                .build();
-//        DietarySupplement biogaya = DietarySupplement.builder()
-//                .name("biogaya")
-//                .coldStorage(false)
-//                .packageDivision(false)
-//                .belarusianProduct(false)
-//                .build();
-        Medicine sedavit = Medicine.builder()
-                .name("sedavit")
-                .coldStorage(false)
-                .dosageForm("tab")
-                .recipe(false)
-                .build();
-        DietarySupplement normobakt = DietarySupplement.builder()
-                .name("normobakt")
-                .coldStorage(false)
-                .packageDivision(true)
-                .belarusianProduct(false)
-                .build();
-        DietarySupplement babycalm = DietarySupplement.builder()
-                .name("babycalm")
-                .coldStorage(true)
-                .packageDivision(false)
-                .belarusianProduct(false)
-                .build();
-//        session.save(sedavit);
-//        session.save(normobakt);
-//        session.save(babycalm);
+        EntityManagerHelper helper = EntityManagerHelper.getInstance();
 
-//        Product object = session.find(Product.class, 2L);
-//        System.out.println(object);
+        EntityManager em = helper.getEntityManager();
+        EntityTransaction trx = em.getTransaction();
+        trx.begin();
+//
+//        //from JPQL
+//        TypedQuery<Product> queryJpqlFrom = em.createQuery("from Product", Product.class);
+//        queryJpqlFrom.getResultList().forEach(Start::printCollection);
+//
+//        //from Criteria API
+//        CriteriaBuilder cb = em.getCriteriaBuilder();
+//        CriteriaQuery<Product> queryCriteriaFrom = cb.createQuery(Product.class);
+//        queryCriteriaFrom.from(Product.class);
+//        em.createQuery(queryCriteriaFrom).getResultList().forEach(Start::printCollection);
+//
+//        //select JPQL
+//        TypedQuery<Product> queryJpqlSelect = em.createQuery("select p from Product p", Product.class);
+//        queryJpqlSelect.getResultList().forEach(Start::printCollection);
 
-//        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
-//        System.out.println(products);
+        //select Criteria API
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Product> queryCriteriaSelect = criteriaBuilder.createQuery(Product.class);
+        Root<Product> productRoot = queryCriteriaSelect.from(Product.class);
+        queryCriteriaSelect.select(productRoot);
+        em.createQuery(queryCriteriaSelect).getResultList().forEach(Start::printCollection);
 
-//        babycalm.setPackageDivision(true);
-//        session.saveOrUpdate(babycalm);
 
-        session.delete(babycalm);
+
 
         trx.commit();
         session.close();
+
+    }
+
+    private static void printCollection(Object object) {
+        System.out.println(object);
     }
 }
