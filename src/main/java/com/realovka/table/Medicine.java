@@ -1,4 +1,4 @@
-package by.realovka.table;
+package com.realovka.table;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -14,10 +14,9 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @SuperBuilder
-@Table(name = "dietary_supplement_per_class")
-public class DietarySupplement extends Product {
-    @Column(name = "package_division")
-    private Boolean packageDivision;
-    @Column(name = "belarusian_product")
-    private Boolean belarusianProduct;
+@Table(name = "medicine_per_class")
+public class Medicine extends Product {
+    @Column(name = "dosage_form")
+    private String dosageForm;
+    private Boolean recipe;
 }

@@ -1,4 +1,4 @@
-package by.realovka;
+package com.realovka;
 
 import lombok.SneakyThrows;
 import org.hibernate.SessionFactory;

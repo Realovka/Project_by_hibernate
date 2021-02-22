@@ -1,4 +1,4 @@
-package by.realovka.table;
+package com.realovka.table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,4 +20,12 @@ public class Product {
     private String name;
     @Column(name = "cold_storage")
     private Boolean coldStorage;
+
+    public Product(String name) {
+        this.name = name;
+    }
+
+    public Product(Boolean coldStorage) {
+        this.coldStorage = coldStorage;
+    }
 }
