@@ -27,9 +27,9 @@
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
 
-        <mapping class="by.realovka.join.Medicine"/>
-        <mapping class="by.realovka.join.DietarySupplement"/>
-        <mapping class="by.realovka.join.Product"/>
+        <mapping class="by.realovka.table"/>
+        <mapping class="by.realovka.table.DietarySupplement"/>
+        <mapping class="by.realovka.table.Product"/>
 
 
 

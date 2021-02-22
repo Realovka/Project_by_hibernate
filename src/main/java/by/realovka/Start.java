@@ -1,9 +1,9 @@
 package by.realovka;
 
 
-import by.realovka.join.DietarySupplement;
-import by.realovka.join.Medicine;
-import by.realovka.join.Product;
+
+import by.realovka.table.DietarySupplement;
+import by.realovka.table.Medicine;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
