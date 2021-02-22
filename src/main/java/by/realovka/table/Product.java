@@ -12,12 +12,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @SuperBuilder
-@Table(name = "product_join")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "type")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String name;
     @Column(name = "cold_storage")

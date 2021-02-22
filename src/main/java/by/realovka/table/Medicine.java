@@ -15,8 +15,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @SuperBuilder
-@Table(name = "medicine_join")
-@DiscriminatorValue("medicine")
+@Table(name = "medicine_per_class")
 public class Medicine extends Product {
     @Column(name = "dosage_form")
     private String dosageForm;

@@ -15,8 +15,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @SuperBuilder
-@Table(name = "dietary_supplement_join")
-@DiscriminatorValue("dietary_supplement")
+@Table(name = "dietary_supplement_per_class")
 public class DietarySupplement extends Product {
     @Column(name = "package_division")
     private Boolean packageDivision;
