@@ -29,17 +29,26 @@ public class Start {
                 .packageDivision(false)
                 .belarusianProduct(false)
                 .build();
-//        session.save(cerebrolizat);
-//        session.save(biogaya);
 
-//        Product object = session.find(Product.class, 2L);
-//        System.out.println(object);
+        session.save(cerebrolizat);
+        session.save(biogaya);
 
-//        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
-//        System.out.println(products);
+        Product object = session.find(Product.class, 2L);
+        System.out.println(object);
 
-        biogaya.setPackageDivision(true);
-        session.saveOrUpdate(biogaya);
+        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
+        System.out.println(products);
+
+        Product product = session.find(Product.class, 3L);
+        product.setColdStorage(true);
+        session.saveOrUpdate(product);
+
+        Product productBiogaya = session.find(Product.class, 3L);
+        session.delete(productBiogaya);
+
+        Medicine medicine = session.find(Medicine.class, 2L);
+        medicine.setRecipe(false);
+        session.saveOrUpdate(medicine);
 
         trx.commit();
         session.close();
