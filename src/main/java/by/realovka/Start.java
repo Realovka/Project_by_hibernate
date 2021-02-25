@@ -44,7 +44,6 @@ public class Start {
         biogayaFromDb.setColdStorage(false);
         session.saveOrUpdate(biogayaFromDb);
 
-
         trx.commit();
         session.close();
     }
