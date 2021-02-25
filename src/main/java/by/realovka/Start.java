@@ -34,16 +34,18 @@ public class Start {
         session.save(cerebrolizat);
         session.save(biogaya);
 
-//        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
-//        System.out.println(products);
+        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
+        System.out.println(products);
 
-//        Product object = session.find(Product.class, 3L);
-//        System.out.println(object);
+        Product object = session.find(Product.class, 2L);
+        System.out.println(object);
 
-//        biogaya.setPackageDivision(true);
-//        session.saveOrUpdate(biogaya);
+        Product productFromDb = session.find(Product.class, 1L);
+        productFromDb.setColdStorage(false);
+        session.saveOrUpdate(productFromDb);
 
-//        session.delete(cerebrolizat); //TODO
+        Product product = session.find(Product.class, 1L);
+        session.delete(productFromDb);
 
         trx.commit();
         session.close();
