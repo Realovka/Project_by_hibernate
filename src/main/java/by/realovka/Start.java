@@ -4,6 +4,7 @@ package by.realovka;
 
 import by.realovka.table.DietarySupplement;
 import by.realovka.table.Medicine;
+import by.realovka.table.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -29,17 +30,19 @@ public class Start {
                 .packageDivision(false)
                 .belarusianProduct(false)
                 .build();
-//        session.save(cerebrolizat);
-//        session.save(biogaya);
 
-//        Product object = session.find(Product.class, 2L);
-//        System.out.println(object);
+        session.save(cerebrolizat);
+        session.save(biogaya);
 
-//        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
-//        System.out.println(products);
+        Product object = session.find(Product.class, 1L);
+        System.out.println(object);
 
-        biogaya.setPackageDivision(true);
-        session.saveOrUpdate(biogaya);
+        List<Product> products = session.createQuery("from Product", Product.class).getResultList();
+        System.out.println(products);
+
+        Product biogayaFromDb = session.find( Product.class, 1L);
+        biogayaFromDb.setColdStorage(false);
+        session.saveOrUpdate(biogayaFromDb);
 
         trx.commit();
         session.close();
