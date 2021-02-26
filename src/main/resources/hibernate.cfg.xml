@@ -26,10 +26,12 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        <property name="hibernate.jdbc.batch_size">2</property>
 
-        <mapping class="by.realovka.table.Medicine"/>
-        <mapping class="by.realovka.table.DietarySupplement"/>
-        <mapping class="by.realovka.table.Product"/>
+        <mapping class="by.realovka.model.Team"/>
+        <mapping class="by.realovka.model.HeadCoach"/>
+        <mapping class="by.realovka.model.HockeyPlayer"/>
+        <mapping class="by.realovka.model.AssistantHeadCoach"/>
 
 
 
