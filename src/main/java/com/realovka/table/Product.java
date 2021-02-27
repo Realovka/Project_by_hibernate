@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @SuperBuilder
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@NamedQueries(@NamedQuery(name = "byName", query = "select p from Product p where name=:name"))
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
