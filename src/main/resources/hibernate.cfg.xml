@@ -26,7 +26,7 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
-        <property name="hibernate.jdbc.batch_size">2</property>
+        <property name="hibernate.jdbc.batch_size">3</property>
 
         <mapping class="by.realovka.model.Team"/>
         <mapping class="by.realovka.model.HeadCoach"/>

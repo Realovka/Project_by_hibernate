@@ -1,13 +1,15 @@
 package by.realovka;
 
 
+import by.realovka.entityManager.EntityManagerHelper;
 import by.realovka.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,36 +19,42 @@ public class Start {
         Configuration cfg = new Configuration().configure();
         SessionFactory sessionFactory = cfg.buildSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction trx = session.beginTransaction();
 
-        Team team = Team.builder()
-                .name("Dinamo Minsk")
-                .build();
-        session.save(team);
+        EntityManagerHelper helper = EntityManagerHelper.getInstance();
+
+        EntityManager em = helper.getEntityManager();
+        em.unwrap(Session.class).setJdbcBatchSize(3);
+        EntityTransaction trx = em.getTransaction();
+        trx.begin();
+
+//        Team team = Team.builder()
+//                .name("Dinamo Minsk")
+//                .build();
+//        em.persist(team);
 
 //        @OneToOne
-        Team teamDinamo = session.find(Team.class, 4L);
-        HeadCoach craigWoodcroft = HeadCoach.builder()
-                .firstName("Craig")
-                .lastName("Woodcroft")
-                .age(51)
-                .workChiefYears(10)
-                .team(teamDinamo)
-                .build();
-
-        session.save(craigWoodcroft);
-
-        MemberTeam hc = session.find(MemberTeam.class, 2L);
-        System.out.println(hc);
-
-        HeadCoach woodcroft = session.find(HeadCoach.class, 7L);
-        woodcroft.setWorkChiefYears(13);
-        session.saveOrUpdate(woodcroft);
-
-        //@OneToMany & @ManyToOne
-
-
-        Team dinamoMinsk = session.find(Team.class, 5L);
+//        Team teamDinamo = em.find(Team.class, 4L);
+//        HeadCoach craigWoodcroft = HeadCoach.builder()
+//                .firstName("Craig")
+//                .lastName("Woodcroft")
+//                .age(51)
+//                .workChiefYears(10)
+//                .team(teamDinamo)
+//                .build();
+//
+//        session.save(craigWoodcroft);
+//
+//        MemberTeam hc = em.find(MemberTeam.class, 1L);
+//        System.out.println(hc);
+////
+//        HeadCoach woodcroft = em.find(HeadCoach.class, 1L);
+//        woodcroft.setWorkChiefYears(13);
+//        em.merge(woodcroft);
+//
+//        //@OneToMany & @ManyToOne
+//
+//
+        Team dinamoMinsk = em.find(Team.class, 1L);
 
         AssistantHeadCoach mikhailGrabovski = AssistantHeadCoach.builder()
                 .firstName("Mikhail")
@@ -68,45 +76,47 @@ public class Start {
         Set<AssistantHeadCoach> assistantHeadCoaches = new HashSet<>();
         assistantHeadCoaches.add(mikhailGrabovski);
         assistantHeadCoaches.add(pavelPerepehin);
-        for(AssistantHeadCoach item : assistantHeadCoaches) {
-            session.save(item);
+        for (AssistantHeadCoach item : assistantHeadCoaches) {
+            em.persist(item);
         }
         dinamoMinsk.setAssistants(assistantHeadCoaches);
-        session.saveOrUpdate(dinamoMinsk);
-
-        Team teamFromDb = session.find(Team.class, 5L);
-        System.out.println(teamFromDb);
-
-        Team nationalTeam = Team.builder()
-                .name("national team")
-                .build();
-        session.save(nationalTeam);
+        em.merge(dinamoMinsk);
 //
-//        @ManyToMany
-        Team dnm = session.find(Team.class, 5L);
-
-        HockeyPlayer ilyaShinkevich = HockeyPlayer.builder()
-                .firstName("Iliya")
-                .lastName("Shinkivich")
-                .age(31)
-                .height(189)
-                .weight(83)
-                .amplua("D")
-                .teams(Set.of(dnm))
-                .build();
-
-        dnm.setPlayers(Set.of(ilyaShinkevich));
-        session.saveOrUpdate(dnm);
-        session.save(ilyaShinkevich);
-
-        HockeyPlayer hp = session.find(HockeyPlayer.class, 14L);
-        Team t = session.find(Team.class, 6L);
-        hp.getTeams().add(t);
-        t.getPlayers().add(hp);
-        session.saveOrUpdate(hp);
-        session.saveOrUpdate(t);
+//        Team teamFromDb = session.find(Team.class, 5L);
+//        System.out.println(teamFromDb);
+//
+//        Team nationalTeam = Team.builder()
+//                .name("national team")
+//                .build();
+//        session.save(nationalTeam);
+////
+////        @ManyToMany
+//        Team dnm = session.find(Team.class, 5L);
+//
+//        HockeyPlayer ilyaShinkevich = HockeyPlayer.builder()
+//                .firstName("Iliya")
+//                .lastName("Shinkivich")
+//                .age(31)
+//                .height(189)
+//                .weight(83)
+//                .amplua("D")
+//                .teams(Set.of(dnm))
+//                .build();
+//
+//        dnm.setPlayers(Set.of(ilyaShinkevich));
+//        session.saveOrUpdate(dnm);
+//        session.save(ilyaShinkevich);
+//
+//        HockeyPlayer hp = session.find(HockeyPlayer.class, 14L);
+//        Team t = session.find(Team.class, 6L);
+//        hp.getTeams().add(t);
+//        t.getPlayers().add(hp);
+//        session.saveOrUpdate(hp);
+//        session.saveOrUpdate(t);
 
         trx.commit();
         session.close();
     }
+
 }
+
