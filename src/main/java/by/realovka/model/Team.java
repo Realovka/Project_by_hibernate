@@ -20,13 +20,13 @@ public class Team {
     @OneToOne(mappedBy = "team")
     private HeadCoach headCoach;
     @OneToMany(mappedBy = "team")
-    private Set<AssistantHeadCoach> assistants = new LinkedHashSet<>();
+    private Set<AssistantHeadCoach> assistants;
     @ManyToMany
     @JoinTable(
             name = "team_hockey_player",
             joinColumns = @JoinColumn(name = "team_id"),
             inverseJoinColumns = @JoinColumn(name = "hockey_player_id")
     )
-    private Set<HockeyPlayer> players = new LinkedHashSet<>();
+    private Set<HockeyPlayer> players;
 
 }

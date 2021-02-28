@@ -6,6 +6,8 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 @EqualsAndHashCode(exclude = "teams")
 @ToString(callSuper = true)
