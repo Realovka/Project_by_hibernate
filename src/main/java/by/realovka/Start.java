@@ -37,15 +37,15 @@ public class Start {
         List<Product> products = session.createQuery("from Product", Product.class).getResultList();
         System.out.println(products);
 
-        Product object = session.find(Product.class, 2L);
+        Product object = session.find(Product.class, biogaya.getId());
         System.out.println(object);
 
-        Product productFromDb = session.find(Product.class, 1L);
+        Product productFromDb = session.find(Product.class, cerebrolizat.getId());
         productFromDb.setColdStorage(false);
         session.saveOrUpdate(productFromDb);
 
-        Product product = session.find(Product.class, 1L);
-        session.delete(productFromDb);
+        Product product = session.find(Product.class, biogaya.getId());
+        session.delete(product);
 
         trx.commit();
         session.close();
