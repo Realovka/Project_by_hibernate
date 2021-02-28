@@ -34,13 +34,13 @@ public class Start {
         session.save(cerebrolizat);
         session.save(biogaya);
 
-        Product object = session.find(Product.class, 1L);
+        Product object = session.find(Product.class, cerebrolizat.getId());
         System.out.println(object);
 
         List<Product> products = session.createQuery("from Product", Product.class).getResultList();
         System.out.println(products);
 
-        Product biogayaFromDb = session.find( Product.class, 1L);
+        Product biogayaFromDb = session.find( Product.class, biogaya.getId());
         biogayaFromDb.setColdStorage(false);
         session.saveOrUpdate(biogayaFromDb);
 
