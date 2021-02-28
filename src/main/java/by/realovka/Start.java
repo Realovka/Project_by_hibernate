@@ -33,20 +33,20 @@ public class Start {
         session.save(cerebrolizat);
         session.save(biogaya);
 
-        Product object = session.find(Product.class, 2L);
+        Product object = session.find(Product.class, biogaya.getId());
         System.out.println(object);
 
         List<Product> products = session.createQuery("from Product", Product.class).getResultList();
         System.out.println(products);
 
-        Product product = session.find(Product.class, 3L);
+        Product product = session.find(Product.class, biogaya.getId());
         product.setColdStorage(true);
         session.saveOrUpdate(product);
 
-        Product productBiogaya = session.find(Product.class, 3L);
+        Product productBiogaya = session.find(Product.class, biogaya.getId());
         session.delete(productBiogaya);
 
-        Medicine medicine = session.find(Medicine.class, 2L);
+        Medicine medicine = session.find(Medicine.class, cerebrolizat.getId());
         medicine.setRecipe(false);
         session.saveOrUpdate(medicine);
 
