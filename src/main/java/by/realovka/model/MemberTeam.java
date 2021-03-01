@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Entity
 public class MemberTeam {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     @Column(name = "first_name")
     private String firstName;

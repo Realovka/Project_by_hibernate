@@ -28,23 +28,23 @@ public class Start {
         session.save(team);
 
 //        @OneToOne
-        Team teamDinamo = session.find(Team.class, team.getId());
-        HeadCoach craigWoodcroft = HeadCoach.builder()
-                .firstName("Craig")
-                .lastName("Woodcroft")
-                .age(51)
-                .workChiefYears(10)
-                .team(teamDinamo)
-                .build();
-
-        session.save(craigWoodcroft);
-
-        MemberTeam hc = session.find(MemberTeam.class, craigWoodcroft.getId());
-        System.out.println(hc);
-
-        HeadCoach woodcroft = session.find(HeadCoach.class, craigWoodcroft.getId());
-        woodcroft.setWorkChiefYears(13);
-        session.saveOrUpdate(woodcroft);
+//        Team teamDinamo = session.find(Team.class, team.getId());
+//        HeadCoach craigWoodcroft = HeadCoach.builder()
+//                .firstName("Craig")
+//                .lastName("Woodcroft")
+//                .age(51)
+//                .workChiefYears(10)
+//                .team(teamDinamo)
+//                .build();
+//
+//        session.save(craigWoodcroft);
+//
+//        MemberTeam hc = session.find(MemberTeam.class, craigWoodcroft.getId());
+//        System.out.println(hc);
+//
+//        HeadCoach woodcroft = session.find(HeadCoach.class, craigWoodcroft.getId());
+//        woodcroft.setWorkChiefYears(13);
+//        session.saveOrUpdate(woodcroft);
 
         //@OneToMany & @ManyToOne
 
@@ -88,30 +88,30 @@ public class Start {
         session.save(nationalTeam);
 //
 //        @ManyToMany
-        Team dnm = session.find(Team.class, team.getId());
-
-        HockeyPlayer ilyaShinkevich = HockeyPlayer.builder()
-                .firstName("Iliya")
-                .lastName("Shinkivich")
-                .age(31)
-                .height(189)
-                .weight(83)
-                .amplua("D")
-                .teams(new LinkedHashSet<>())
-                .build();
-        ilyaShinkevich.getTeams().add(dnm);
-
-
-        dnm.getPlayers().add(ilyaShinkevich);
-        session.saveOrUpdate(dnm);
-        session.save(ilyaShinkevich);
-
-        HockeyPlayer hp = session.find(HockeyPlayer.class, ilyaShinkevich.getId());
-        Team t = session.find(Team.class, team.getId());
-        hp.getTeams().add(t);
-        t.getPlayers().add(hp);
-        session.saveOrUpdate(hp);
-        session.saveOrUpdate(t);
+//        Team dnm = session.find(Team.class, team.getId());
+//EE
+//        HockeyPlayer ilyaShinkevich = HockeyPlayer.builder()
+//                .firstName("Iliya")
+//                .lastName("Shinkivich")
+//                .age(31)
+//                .height(189)
+//                .weight(83)
+//                .amplua("D")
+//                .teams(new LinkedHashSet<>())
+//                .build();
+//        ilyaShinkevich.getTeams().add(dnm);
+//
+//
+//        dnm.getPlayers().add(ilyaShinkevich);
+//        session.saveOrUpdate(dnm);
+//        session.save(ilyaShinkevich);
+//
+//        HockeyPlayer hp = session.find(HockeyPlayer.class, ilyaShinkevich.getId());
+//        Team t = session.find(Team.class, team.getId());
+//        hp.getTeams().add(t);
+//        t.getPlayers().add(hp);
+//        session.saveOrUpdate(hp);
+//        session.saveOrUpdate(t);
 
         trx.commit();
         session.close();
